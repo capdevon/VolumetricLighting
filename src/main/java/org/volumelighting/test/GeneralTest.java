@@ -63,9 +63,9 @@ public class GeneralTest extends SimpleApplication {
         rootNode.attachChild(randObjects);
 
         fpp = new FilterPostProcessor(assetManager);
-        addSpotlightDrone(new ColorRGBA(1.0f, 0.96f, 0.7f, 1.0f).mult(.8f), 20f * FastMath.DEG_TO_RAD);
-        addSpotlightDrone(ColorRGBA.Cyan, 8f * FastMath.DEG_TO_RAD);
-        addSpotlightDrone(new ColorRGBA(1.0f, 0.96f, 0.7f, 1.0f).mult(6f), 4f * FastMath.DEG_TO_RAD);
+        addSpotLightDrone(new ColorRGBA(1.0f, 0.96f, 0.7f, 1.0f).mult(.8f), 20f * FastMath.DEG_TO_RAD);
+        addSpotLightDrone(ColorRGBA.Cyan, 8f * FastMath.DEG_TO_RAD);
+        addSpotLightDrone(new ColorRGBA(1.0f, 0.96f, 0.7f, 1.0f).mult(6f), 4f * FastMath.DEG_TO_RAD);
         viewPort.addProcessor(fpp);
     }
 
@@ -74,7 +74,7 @@ public class GeneralTest extends SimpleApplication {
      * @param droneColor
      * @param coneSize
      */
-    private void addSpotlightDrone(ColorRGBA droneColor, float coneSize) {
+    private void addSpotLightDrone(ColorRGBA droneColor, float coneSize) {
 
         // drone box mesh
         Geometry drone = new Geometry("drone", new Box(.5f, .5f, 1));
