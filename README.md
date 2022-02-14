@@ -5,7 +5,7 @@ Volumetric Lighting library for JMonkey Game Engine
 ### Usage:
 ```java
 //1. FPP to add the filter
-FilterPostProcessor filterPostProcessor = new FilterPostProcessor(assetManager);
+FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
 //2. Basic settings
 ColorRGBA color = new ColorRGBA(0.8f, 0.6f, 0f, 1.0f).mult(0.5f);
 Vector3f pos = new Vector3f(1.4053185f, 5.5330953f, -1.5833765f); 
@@ -22,8 +22,8 @@ rootNode.addLight(spot);
 VolumeLightFilter vsf = new VolumeLightFilter(spot, 128, 0.46f, rootNode);
 vsf.setInensity(3);
 //5. Add
-filterPostProcessor.addFilter(vsf);
-viewPort.addProcessor(filterPostProcessor);
+fpp.addFilter(vsf);
+viewPort.addProcessor(fpp);
 ```
 ### Screenshots
 
