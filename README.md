@@ -3,7 +3,7 @@ Volumetric Lighting library for JMonkey Game Engine
 
 
 ### Usage:
-```
+```java
 //1. FPP to add the filter
 FilterPostProcessor filterPostProcessor = new FilterPostProcessor(assetManager);
 //2. Basic settings
