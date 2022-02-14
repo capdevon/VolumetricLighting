@@ -7,7 +7,7 @@ Volumetric Lighting library for JMonkey Game Engine
 //1. FPP to add the filter
 FilterPostProcessor filterPostProcessor = new FilterPostProcessor(assetManager);
 //2. Basic settings
-ColorRGBA color = new ColorRGBA(0.8f, 0.6f, 0f, 1.0f ).mult(0.5f);
+ColorRGBA color = new ColorRGBA(0.8f, 0.6f, 0f, 1.0f).mult(0.5f);
 Vector3f pos = new Vector3f(1.4053185f, 5.5330953f, -1.5833765f); 
 //3. Spotlight which contains basic config data and provides real lighting
 SpotLight spot = new SpotLight();
