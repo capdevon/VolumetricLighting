@@ -30,7 +30,7 @@ public class VolumeLightFilter extends Filter {
     private ViewPort viewPort;
     private VolumeLightRenderer shadowVolumeRenderer;
 
-    private Material lightVolulmeMat;
+    private Material lightVolumeMat;
     private Geometry lightVolume;
     private int resolution;
     private float intensity = 10f;
@@ -85,20 +85,20 @@ public class VolumeLightFilter extends Filter {
 
         postRenderPasses = new ArrayList<Filter.Pass>();
 
-        lightVolulmeMat = new Material(manager, "MatDefs/VolumetricLighting/VolumetricLight.j3md");
-        lightVolulmeMat.getAdditionalRenderState().setWireframe(false); // good for debugging
+        lightVolumeMat = new Material(manager, "MatDefs/VolumetricLighting/VolumetricLight.j3md");
+        lightVolumeMat.getAdditionalRenderState().setWireframe(false); // good for debugging
         // volumeShadow_mat.setTexture("CookieMap", assetManager.loadTexture("Textures/Cookie2.png")); // Cookie coming soon
-        lightVolulmeMat.setMatrix4("LightViewProjectionMatrix", lightCam.getViewProjectionMatrix());
-        lightVolulmeMat.setMatrix4("LightViewProjectionInverseMatrix", lightCam.getViewProjectionMatrix().invert());
-        lightVolulmeMat.setVector3("CameraPos", vp.getCamera().getLocation());
-        lightVolulmeMat.setColor("LightColor", light.getColor());
-        lightVolulmeMat.setFloat("LightIntensity", intensity);
-        lightVolulmeMat.setVector2("LinearDepthFactorsLight", getLinearDepthFactors(lightCam));
-        lightVolulmeMat.setVector2("LinearDepthFactorsCam", getLinearDepthFactors(vp.getCamera()));
+        lightVolumeMat.setMatrix4("LightViewProjectionMatrix", lightCam.getViewProjectionMatrix());
+        lightVolumeMat.setMatrix4("LightViewProjectionInverseMatrix", lightCam.getViewProjectionMatrix().invert());
+        lightVolumeMat.setVector3("CameraPos", vp.getCamera().getLocation());
+        lightVolumeMat.setColor("LightColor", light.getColor());
+        lightVolumeMat.setFloat("LightIntensity", intensity);
+        lightVolumeMat.setVector2("LinearDepthFactorsLight", getLinearDepthFactors(lightCam));
+        lightVolumeMat.setVector2("LinearDepthFactorsCam", getLinearDepthFactors(vp.getCamera()));
         // this is nasty, but is silly to calculate every frame
-        lightVolulmeMat.setVector2("LightNearFar", new Vector2f(lightCam.getFrustumNear(), fvm.farPlaneGridDistance()));
+        lightVolumeMat.setVector2("LightNearFar", new Vector2f(lightCam.getFrustumNear(), fvm.farPlaneGridDistance()));
 
-        lightVolume.setMaterial(lightVolulmeMat);
+        lightVolume.setMaterial(lightVolumeMat);
 
         lightVolumePass = new Filter.Pass() {
 //            @Override
@@ -117,7 +117,7 @@ public class VolumeLightFilter extends Filter {
 
         material = new Material(manager, "MatDefs/VolumetricLighting/VolumetricLightFilter.j3md");
         material.setTexture("LightingVolumeTex", lightVolumePass.getRenderedTexture());
-        shadowVolumeRenderer.setPostShadowMaterial2(lightVolulmeMat);
+        shadowVolumeRenderer.setPostShadowMaterial2(lightVolumeMat);
     }
 
     /**
@@ -158,7 +158,7 @@ public class VolumeLightFilter extends Filter {
 
         renderManager.setCamera(viewPort.getCamera(), false);
 
-        lightVolulmeMat.setTexture("SceneDepthTexture", sceneBuffer.getDepthBuffer().getTexture());
+        lightVolumeMat.setTexture("SceneDepthTexture", sceneBuffer.getDepthBuffer().getTexture());
 
         // sync volume
         lightVolume.setLocalTranslation(lightCam.getLocation());
@@ -175,8 +175,8 @@ public class VolumeLightFilter extends Filter {
     protected void preFrame(float tpf) {
         syncLightCam();
 
-        lightVolulmeMat.setVector3("CameraPos", viewPort.getCamera().getLocation());
-        lightVolulmeMat.setVector3("LightPos", lightCam.getLocation());
+        lightVolumeMat.setVector3("CameraPos", viewPort.getCamera().getLocation());
+        lightVolumeMat.setVector3("LightPos", lightCam.getLocation());
     }
 
     @Override
@@ -205,8 +205,8 @@ public class VolumeLightFilter extends Filter {
      */
     public void setInensity(float intensity) {
         this.intensity = intensity;
-        if (lightVolulmeMat != null) {
-            lightVolulmeMat.setFloat("LightIntensity", intensity);
+        if (lightVolumeMat != null) {
+            lightVolumeMat.setFloat("LightIntensity", intensity);
         }
     }
 }
