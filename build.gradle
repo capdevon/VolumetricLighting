@@ -15,7 +15,7 @@ repositories {
 }
 
 project.ext {
-    jmeVersion = '3.5.0-stable'
+    jmeVersion = '3.5.1-stable'
 }
 
 dependencies {
